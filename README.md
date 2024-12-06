@@ -13,7 +13,7 @@ Make an `update.exe` that checks github for new releases and updates the current
 - Copy `update.exe` to your project you want to auto update
 
 ## Usage Details
-- Will only grab the first release artifact
+- Will only grab the latest release artifact
 - Expects that artifact to be a zip
 - Creates and maintains an `update.txt` with the latest releases' publish timestamp
 
