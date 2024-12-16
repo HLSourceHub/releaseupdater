@@ -15,7 +15,7 @@ if dirname.lower() != "half-life":
     print("** Please place me in the Half-Life directory, and run again! **");
 	winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
     time.sleep(10);
-    exit();
+    sys.exit();
 
 repo_url = "https://github.com/xjiro/releasetest"
 
