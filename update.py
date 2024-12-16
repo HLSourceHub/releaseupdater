@@ -9,9 +9,6 @@ from urllib.parse import urlparse
 str_update_manifest_fname = "lastupdate.txt";
 str_release_fname = "release.zip";
 
-duration = 1000; # milliseconds
-freq = 440; # Hz
-
 cwd = os.getcwd();
 dirname = os.path.basename(cwd);
 if dirname.lower() != "half-life":
