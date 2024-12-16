@@ -1,8 +1,24 @@
 import sys
 import os
+import time
 import requests
 import datetime
+import winsound
 from urllib.parse import urlparse
+
+str_update_manifest_fname = "lastupdate.txt";
+str_release_fname = "release.zip";
+
+duration = 1000; # milliseconds
+freq = 440; # Hz
+
+cwd = os.getcwd();
+dirname = os.path.basename(cwd);
+if dirname.lower() != "half-life":
+    print("** Please place me in the Half-Life directory, and run again! **");
+	winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
+    time.sleep(10);
+    exit();
 
 repo_url = "https://github.com/xjiro/releasetest"
 
@@ -14,10 +30,10 @@ username, repo = path_parts[-2:]
 # get the last update we performed
 latest = 0
 try:
-    with open('lastupdate.txt', 'r') as f:
+    with open(str_update_manifest_fname, 'r') as f:
         latest = int(f.read())
 except:
-    with open('lastupdate.txt', 'w+') as f:
+    with open(str_update_manifest_fname, 'w+') as f:
         f.write(str(latest))
 
 
@@ -45,27 +61,27 @@ published = datetime.datetime.strptime(release['published_at'], '%Y-%m-%dT%H:%M:
 published_unix = int(published.timestamp())
 
 if published_unix <= latest:
-    print("We are up to date")
+    print("We are up to date!")
     sys.exit(0)
 
 print(f"New release from {published}, updating...")
 
 with requests.get(release['assets'][0]['browser_download_url'], stream=True) as r:
     r.raise_for_status()
-    with open('release.zip', 'wb') as f:
+    with open(str_release_fname, 'wb') as f:
         for chunk in r.iter_content(chunk_size=8192):
             f.write(chunk)
 
 # unzip release.zip
 import zipfile
-with zipfile.ZipFile('release.zip', 'r') as zip_ref:
+with zipfile.ZipFile(str_release_fname, 'r') as zip_ref:
     zip_ref.extractall('.')
 
 print(f"Update complete !")
 
 # clean up
-os.remove('release.zip')
+os.remove(str_release_fname)
 
 # update the release info
-with open('lastupdate.txt', 'w') as f:
+with open(str_update_manifest_fname, 'w') as f:
     f.write(str(published_unix))
