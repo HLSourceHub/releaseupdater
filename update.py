@@ -13,7 +13,7 @@ cwd = os.getcwd();
 dirname = os.path.basename(cwd);
 if dirname.lower() != "sourcemods":
     print("** Please place me in the Sourcemods directory, and run again! **");
-	winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
+    winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
     time.sleep(10);
     sys.exit();
 
