@@ -11,8 +11,8 @@ str_release_fname = "release.zip";
 
 cwd = os.getcwd();
 dirname = os.path.basename(cwd);
-if dirname.lower() != "half-life":
-    print("** Please place me in the Half-Life directory, and run again! **");
+if dirname.lower() != "sourcemods":
+    print("** Please place me in the Sourcemods directory, and run again! **");
 	winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
     time.sleep(10);
     sys.exit();
