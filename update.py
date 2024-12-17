@@ -13,7 +13,7 @@ cwd = os.getcwd();
 dirname = os.path.basename(cwd);
 if dirname.lower() != "half-life":
     print("** Please place me in the Half-Life directory, and run again! **");
-	winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
+    winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS);
     time.sleep(10);
     sys.exit();
 
