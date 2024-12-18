@@ -4,6 +4,7 @@ import time
 import requests
 import datetime
 import winsound
+import webbrowser
 from urllib.parse import urlparse
 
 str_update_manifest_fname = "lastupdate.txt";
@@ -75,6 +76,7 @@ with zipfile.ZipFile(str_release_fname, 'r') as zip_ref:
     zip_ref.extractall('.')
 
 print(f"Update complete !")
+webbrowser.open('steam://install/<appid>')
 
 # clean up
 os.remove(str_release_fname)
