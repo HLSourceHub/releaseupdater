@@ -101,8 +101,8 @@ def extract_portable_7zip():
         print("Portable 7-Zip not found. Downloading...")
         try:
             # Extract the portable 7-Zip archive using zipfile
-            urllib.request.urlretrieve("https://github.com/HLSourceHub/releaseupdater/raw/refs/heads/hl2_7z/7z_portable.zip", seven_zip_archive)
-            with zipfile.ZipFile(seven_zip_archive, 'r') as archive:
+            urllib.request.urlretrieve("https://github.com/HLSourceHub/releaseupdater/raw/refs/heads/hl2_7z/7z_portable.zip", "7z_portable.zip")
+            with zipfile.ZipFile("7z_portable.zip", 'r') as archive:
                 archive.extractall(seven_zip_dir)
             print("Portable 7-Zip downloaded successfully.")
         except Exception as e:
