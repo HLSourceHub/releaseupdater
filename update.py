@@ -8,7 +8,7 @@ import webbrowser
 from urllib.parse import urlparse
 
 str_update_manifest_fname = "lastupdate.txt";
-str_release_fname = "release.zip";
+str_release_fname = "release.7z";
 
 cwd = os.getcwd();
 dirname = os.path.basename(cwd);
@@ -70,9 +70,9 @@ with requests.get(release['assets'][0]['browser_download_url'], stream=True) as 
         for chunk in r.iter_content(chunk_size=8192):
             f.write(chunk)
 
-# unzip release.zip
-import zipfile
-with zipfile.ZipFile(str_release_fname, 'r') as zip_ref:
+# unzip release.7z
+import py7zr
+with py7zr.SevenZipFile(str_release_fname, 'r') as zip_ref:
     zip_ref.extractall('.')
 
 print(f"Update complete !")
